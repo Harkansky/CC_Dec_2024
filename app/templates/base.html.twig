@@ -1,9 +1,35 @@
 <!DOCTYPE html>
+<html lang="fr">
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}E-Commerce{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #ffe6cc; /* Warm peachy background */
+            }
+            .navbar {
+                background-color: #ff9966; /* Warm orange */
+            }
+            .navbar-brand {
+                color: #fff;
+                font-weight: bold;
+            }
+            .btn-primary {
+                background-color: #ff704d; /* Warm reddish-orange */
+                border-color: #ff704d;
+            }
+            .btn-primary:hover {
+                background-color: #ff5733;
+                border-color: #ff5733;
+            }
+            .card {
+                border: none;
+            }
+        </style>
         {% block stylesheets %}
         {% endblock %}
 
@@ -12,6 +38,15 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div>
+        {% include 'comp/header.html.twig' %}
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        {% include 'comp/footer.html.twig' %}
+    </div>
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
