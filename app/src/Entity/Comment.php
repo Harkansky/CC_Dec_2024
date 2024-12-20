@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +29,20 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
+
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'childComments')]
+    private ?self $parentComment = null;
+
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parentComment')]
+    private Collection $childComments;
+
+    public function __construct()
+    {
+        $this->childComments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -77,6 +93,48 @@ class Comment
     public function setProduct(?Product $product): static
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getParentComment(): ?self
+    {
+        return $this->parentComment;
+    }
+
+    public function setParentComment(?self $parentComment): static
+    {
+        $this->parentComment = $parentComment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getChildComments(): Collection
+    {
+        return $this->childComments;
+    }
+
+    public function addChildComment(self $childComment): static
+    {
+        if (!$this->childComments->contains($childComment)) {
+            $this->childComments->add($childComment);
+            $childComment->setParentComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChildComment(self $childComment): static
+    {
+        if ($this->childComments->removeElement($childComment)) {
+            // set the owning side to null (unless already changed)
+            if ($childComment->getParentComment() === $this) {
+                $childComment->setParentComment(null);
+            }
+        }
 
         return $this;
     }

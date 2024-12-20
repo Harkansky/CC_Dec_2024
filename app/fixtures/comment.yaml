@@ -1,0 +1,12 @@
+App\Entity\Comment:
+
+  comment_template (template):
+    content: '<sentence()>'
+    poster: '@user_*'
+    product: '@product_*'
+    postedAt: '<dateTimeBetween("-1 year", "now")>'
+
+  comment_{1..200} (extends comment_template):
+
+  comment_with_parent_{1..50} (extends comment_template):
+    parentComment: '@comment_*'

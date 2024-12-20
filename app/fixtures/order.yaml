@@ -1,0 +1,8 @@
+App\Entity\Order:
+
+  order_{1..50}:
+    customer: '@user_*'
+    total: '<numberBetween(100, 100000)>'
+    placedAt: '<dateTimeBetween("-1 year", "now")>'
+    status: '<randomElement(["pending", "shipped", "completed", "cancelled"])>'
+    products: '<numberBetween(1, 9)>x @product_*'

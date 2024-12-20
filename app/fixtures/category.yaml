@@ -1,0 +1,21 @@
+App\Entity\Category:
+
+  category_tech:
+    name: 'Tech'
+    description: 'Technologie'
+
+  category_clothing:
+    name: 'Clothing'
+    description: 'Vêtements'
+
+  category_sport:
+    name: 'Sport'
+    description: 'Sport'
+
+  category_food:
+    name: 'Food'
+    description: 'Nourriture'
+
+  category_books:
+    name: 'Books'
+    description: 'Livres'
