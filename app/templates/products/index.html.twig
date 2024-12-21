@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits - E-Commerce{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Nos Produits</h1>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="https://picsum.photos/350?random={{ product.id }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text fw-bold">Prix: {{ product.price / 100 }}€</p>
+{#                            <a href="{{ path('product_details', { id: product.id }) }}" class="btn btn-primary">Voir plus</a>#}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center">Aucun produit disponible pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
