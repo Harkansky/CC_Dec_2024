@@ -11,4 +11,10 @@ App\Entity\User:
     role: 'ROLE_ADMIN'
     roles: ['ROLE_ADMIN']
 
+  user_test (extends user_template):
+    email: 'test\@test.com'
+    plainPassword: 'test'
+    role: 'ROLE_USER'
+    roles: ['ROLE_USER']
+
   user_{1..50} (extends user_template):

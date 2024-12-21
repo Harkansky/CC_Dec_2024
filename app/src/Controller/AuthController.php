@@ -29,4 +29,16 @@ class AuthController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route('/banned', name: 'user_banned')]
+    public function banned(): Response
+    {
+        return $this->render('auth/banned.html.twig');
+    }
+
+    #[Route('/access-denied', name: 'access_denied_page')]
+    public function accessDenied(): Response
+    {
+        return $this->render('auth/accessdenied.html.twig');
+    }
 }
