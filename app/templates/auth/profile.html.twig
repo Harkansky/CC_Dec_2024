@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil Utilisateur{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <h1 class="mb-4">Mon Profil</h1>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Informations Utilisateur</h5>
+
+                <p class="card-text">
+                    <strong>Nom d'utilisateur : </strong> {{ app.user.username }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Email : </strong> {{ app.user.email }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-warning">Réinitialiser mon mot de passe</a>
+    </div>
+{% endblock %}
